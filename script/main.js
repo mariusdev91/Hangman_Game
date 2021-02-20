@@ -3,8 +3,8 @@ function turnWordIntoArray() {
     let letterArray = wordToGuess.split('');
     const para = document.getElementById('wordArea');
     for (let i = 0; i < letterArray.length; ++i) {
-        if (i % 2 === 0) {
-            para.innerText += letterArray[i].toUpperCase();
+        if (i !== letterArray.length - 1) {
+            para.innerText += '_' + ' ';
         } else {
             para.innerText += '_';
         }
@@ -13,9 +13,9 @@ function turnWordIntoArray() {
 
 let triesLeft = 8;
 function checkForLetterOrWordMatch() {
-    let letterOrWordwordToGuess = document.getElementById('guessArea').querySelector('input').value;
-    const wordToGuess = document.querySelector('input').value;
-    let modifiedWord = document.getElementById('wordArea').innerText;
+    let letterOrWordwordToGuess = document.getElementById('guessArea').querySelector('input').value.toUpperCase();
+    const wordToGuess = document.querySelector('input').value.toUpperCase();
+    let modifiedWord = document.getElementById('wordArea').innerText.toUpperCase();
     let para = '';
     if (wordToGuess.indexOf(letterOrWordwordToGuess) !== -1 && modifiedWord.indexOf(letterOrWordwordToGuess) === -1 && letterOrWordwordToGuess.length < wordToGuess.length) {
         for (let j = 0; j < wordToGuess.length; ++j) {
@@ -28,7 +28,8 @@ function checkForLetterOrWordMatch() {
         document.getElementById('wordArea').innerText = '';
         para = para.toUpperCase();
         document.getElementById('wordArea').innerText = para;
-        if (para.localeCompare(wordToGuess) === 0) {
+        alert(document.getElementById('wordArea').innerText + " " + wordToGuess);
+        if (document.getElementById('wordArea').innerText.localeCompare(wordToGuess) === 0) {
             document.getElementById('score').innerText = `You have won! Congratulations! You had ${triesLeft} tries left. Want to try another game?`;
             const newGame = document.createElement('button');
             newGame.innerText = 'New Game';
