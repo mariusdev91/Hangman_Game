@@ -1,5 +1,5 @@
 function turnWordIntoArray() {
-    const wordToGuess = document.querySelector('wordToGuess').value;
+    const wordToGuess = document.querySelector('input').value;
     let letterArray = wordToGuess.split('');
     const para = document.getElementById('wordArea');
     for (let i = 0; i < letterArray.length; ++i) {
@@ -12,9 +12,9 @@ function turnWordIntoArray() {
 }
 
 let triesLeft = 8;
-function checkForLetterInWord() {
-    let letterOrWordwordToGuess = document.getElementById('guessArea').querySelector('wordToGuess').value;
-    const wordToGuess = document.querySelector('wordToGuess').value;
+function checkForLetterOrWordMatch() {
+    let letterOrWordwordToGuess = document.getElementById('guessArea').querySelector('input').value;
+    const wordToGuess = document.querySelector('input').value;
     let modifiedWord = document.getElementById('wordArea').innerText;
     let para = '';
     if (wordToGuess.indexOf(letterOrWordwordToGuess) !== -1 && modifiedWord.indexOf(letterOrWordwordToGuess) === -1 && letterOrWordwordToGuess.length < wordToGuess.length) {
@@ -44,9 +44,7 @@ function checkForLetterInWord() {
         const newGame = document.createElement('button');
         newGame.innerText = 'New Game';
         document.getElementById('score').appendChild(newGame);
-        newGame.addEventListener('click', function () {
-            location.reload();
-        });
+        newGame.addEventListener('click', function () { location.reload();});
     } else if (triesLeft > 0 && wordToGuess.indexOf(letterOrWordwordToGuess) === -1 || modifiedWord.indexOf(letterOrWordwordToGuess) !== -1) {
         document.getElementById('score').innerText = `You have ${triesLeft} tries left! Be careful!`;
         --triesLeft;
@@ -61,7 +59,7 @@ function init() {
     const addWordButton = document.getElementById('addWord');
     const addLetterButton = document.getElementById('checkForLetter');
     addWordButton.addEventListener('click', turnWordIntoArray);
-    addLetterButton.addEventListener('click', checkForLetterInWord);
+    addLetterButton.addEventListener('click', checkForLetterOrWordMatch);
 }
 
 init();
