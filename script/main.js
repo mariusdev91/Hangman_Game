@@ -60,7 +60,6 @@ function startGame() {
     const addLetterButton = document.getElementById('checkForLetter');
     addWordButton.addEventListener('click', wordToArray);
     addLetterButton.addEventListener('click', comparingValues);
-    ++start;
 }
 
 startGame();
